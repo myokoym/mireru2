@@ -1,8 +1,8 @@
-require "gtk3"
-require "gtksourceview3"
-require "mireru/video"
+require "gtk2"
+require "gtksourceview2"
+require "mireru2/video"
 
-module Mireru
+module Mireru2
   class Error < StandardError
   end
 
@@ -18,16 +18,16 @@ module Mireru
           image.pixbuf = pixbuf
           widget = image
         elsif video?(file)
-          widget = Mireru::Video.create(file)
+          widget = Mireru2::Video.create(file)
         else
           begin
             buffer = buffer_from_file(file)
-          rescue Mireru::Error
+          rescue Mireru2::Error
             return sorry
           end
-          view = GtkSource::View.new(buffer)
+          view = Gtk::SourceView.new(buffer)
           view.show_line_numbers = true
-          lang = GtkSource::LanguageManager.new.get_language("ruby")
+          lang = Gtk::SourceLanguageManager.new.get_language("ruby")
           view.buffer.language = lang
           view.buffer.highlight_syntax = true
           view.buffer.highlight_matching_brackets = true
@@ -53,9 +53,9 @@ module Mireru
       end
 
       def buffer_from_text(text)
-        raise Mireru::Error unless text.valid_encoding?
+        raise Mireru2::Error unless text.valid_encoding?
         text.encode!("utf-8") unless text.encoding == "utf-8"
-        buffer = GtkSource::Buffer.new
+        buffer = Gtk::SourceBuffer.new
         buffer.text = text
         buffer
       end

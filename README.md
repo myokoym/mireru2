@@ -1,23 +1,23 @@
-# Mireru - Flexible File Viewer Keyboard Friend
+# Mireru2 - Flexible File Viewer Keyboard Friend
 
-A file viewer with a focus on flexibility by Ruby/GTK3.
+A file viewer with a focus on flexibility by Ruby/GTK2.
 
 A friend of a keyboard.
 
 ## Requirements
 
-* Ruby/GTK3, Ruby/GtkSourceView3, Ruby/ClutterGTK, Ruby/ClutterGStreamer in
+* Ruby/GTK2, Ruby/GtkSourceView2 in
   [Ruby-GNOME2](http://ruby-gnome2.sourceforge.jp/)
 
 ## Installation
 
-    $ gem install mireru
+    $ gem install mireru2
 
 ## Usage
 
 ### Launch
 
-    $ mireru [OPTION]... [FILE]...
+    $ mireru2 [OPTION]... [FILE]...
 
 If no argument, then search current directory.
 

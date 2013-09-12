@@ -1,13 +1,13 @@
-require "gtk3"
-require "mireru/logger"
-require "mireru/window"
-require "mireru/container"
-require "mireru/version"
+require "gtk2"
+require "mireru2/logger"
+require "mireru2/window"
+require "mireru2/container"
+require "mireru2/version"
 
-module Mireru
+module Mireru2
   module Command
-    class Mireru
-      USAGE = "Usage: mireru [OPTION]... [FILE]..."
+    class Mireru2
+      USAGE = "Usage: mireru2 [OPTION]... [FILE]..."
 
       class << self
         def run(*arguments)
@@ -16,7 +16,7 @@ module Mireru
       end
 
       def initialize
-        @logger = ::Mireru::Logger.new
+        @logger = ::Mireru2::Logger.new
       end
 
       def run(arguments)
@@ -31,14 +31,14 @@ module Mireru
         font = purge_option(arguments, /\A(-f|--font)\z/, true)
 
         files = files_from_arguments(arguments)
-        file_container = ::Mireru::Container.new(files)
+        file_container = ::Mireru2::Container.new(files)
 
         if file_container.empty?
           write_empty_message
           exit(false)
         end
 
-        window = ::Mireru::Window.new
+        window = ::Mireru2::Window.new
         window.font = font if font
         window.add_container(file_container)
 
@@ -124,7 +124,7 @@ Keybind:
 
       def write_version_message
         message = <<-EOM
-#{::Mireru::VERSION}
+#{::Mireru2::VERSION}
         EOM
         @logger.info(message)
       end

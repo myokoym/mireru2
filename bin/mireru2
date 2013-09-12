@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "mireru2/command/mireru2"
+
+Mireru2::Command::Mireru2.run(*ARGV)

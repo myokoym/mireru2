@@ -1,8 +1,8 @@
-require "mireru/container"
+require "mireru2/container"
 
 class ContainerTest < Test::Unit::TestCase
   def setup
-    @container = Mireru::Container.new
+    @container = Mireru2::Container.new
   end
 
   def test_size

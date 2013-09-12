@@ -1,9 +1,9 @@
-require "mireru/logger"
+require "mireru2/logger"
 require "stringio"
 
 class LoggerTest < Test::Unit::TestCase
   def setup
-    @logger = Mireru::Logger.new
+    @logger = Mireru2::Logger.new
   end
 
   def test_info
@@ -11,7 +11,7 @@ class LoggerTest < Test::Unit::TestCase
     io = StringIO.new(s)
     $stdout = io
     message = <<-EOM
-#{Mireru::Command::Mireru::USAGE}
+#{Mireru2::Command::Mireru2::USAGE}
   If no argument, then search current directory.
 Keybind:
   n: next
@@ -29,7 +29,7 @@ Keybind:
     $stderr = io
     message = <<-EOM
 Warning: valid file not found.
-#{Mireru::Command::Mireru::USAGE}
+#{Mireru2::Command::Mireru2::USAGE}
 Support file types: png, gif, jpeg(jpg). The others are...yet.
     EOM
     @logger.error(message)

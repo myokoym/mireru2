@@ -1,7 +1,7 @@
-require "gtk3"
-require "mireru/widget"
+require "gtk2"
+require "mireru2/widget"
 
-module Mireru
+module Mireru2
   class Thumbnail
     class << self
       def create(files, width, height)

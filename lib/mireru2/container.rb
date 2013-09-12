@@ -1,4 +1,4 @@
-module Mireru
+module Mireru2
   class Container
     def initialize(files=[])
       @files = files.select {|file| file?(file) }

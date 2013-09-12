@@ -1,8 +1,10 @@
+# NOTE: Ruby/ClutterGTK is for Ruby/GTK3.
+=begin
 require "clutter-gtk"
 require "clutter-gst"
-require "mireru/widget"
+require "mireru2/widget"
 
-module Mireru
+module Mireru2
   class Video
     class << self
       def create(file)
@@ -25,3 +27,4 @@ module Mireru
     end
   end
 end
+=end

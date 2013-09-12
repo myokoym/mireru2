@@ -1,8 +1,8 @@
-require "gtk3"
-require "mireru/widget"
-require "mireru/thumbnail"
+require "gtk2"
+require "mireru2/widget"
+require "mireru2/thumbnail"
 
-module Mireru
+module Mireru2
   class Window < Gtk::Window
     attr_accessor :font
     def initialize
@@ -35,7 +35,7 @@ module Mireru
         when Gdk::Keyval::GDK_KEY_e
           self.title = File.expand_path(@file)
         when Gdk::Keyval::GDK_KEY_f
-          if Mireru::Widget.image?(@file)
+          if Mireru2::Widget.image?(@file)
             pixbuf = Gdk::Pixbuf.new(@file, *self.size)
             @widget.pixbuf = pixbuf
           elsif @widget.is_a?(Gtk::TextView)
@@ -44,7 +44,7 @@ module Mireru
             self.title = "#{File.basename(@file)} (#{font})"
           end
         when Gdk::Keyval::GDK_KEY_o
-          if Mireru::Widget.image?(@file)
+          if Mireru2::Widget.image?(@file)
             pixbuf = Gdk::Pixbuf.new(@file)
             @widget.pixbuf = pixbuf
           end
@@ -52,7 +52,7 @@ module Mireru
           files = @container.instance_variable_get(:@files)
           self.add_from_file(files)
         when Gdk::Keyval::GDK_KEY_plus
-          if Mireru::Widget.image?(@file)
+          if Mireru2::Widget.image?(@file)
             width  = @widget.pixbuf.width
             height = @widget.pixbuf.height
             scale = 1.1
@@ -67,7 +67,7 @@ module Mireru
             @widget.override_font(Pango::FontDescription.new(font))
           end
         when Gdk::Keyval::GDK_KEY_minus
-          if Mireru::Widget.image?(@file)
+          if Mireru2::Widget.image?(@file)
             width  = @widget.pixbuf.width
             height = @widget.pixbuf.height
             scale = 0.9
@@ -108,14 +108,15 @@ module Mireru
       @scroll.vadjustment.value = 0
       @scroll.each {|child| child.destroy }
       if file.is_a?(Enumerable)
-        @widget = Mireru::Thumbnail.create(file, *self.size)
+        @widget = Mireru2::Thumbnail.create(file, *self.size)
         self.title = "Thumbnails: #{file.size} / #{file.size}"
       else
-        @widget = Mireru::Widget.create(file, *self.size)
+        @widget = Mireru2::Widget.create(file, *self.size)
         self.title = File.basename(file)
       end
       @widget.override_font(Pango::FontDescription.new(@font)) if @font
-      if @widget.is_a?(Gtk::Scrollable)
+      # TODO: improve condition
+      if @widget.is_a?(Gtk::TextView)
         @scroll.add(@widget)
       else
         @scroll.add_with_viewport(@widget)
